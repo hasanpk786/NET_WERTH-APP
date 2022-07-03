@@ -4,8 +4,7 @@ const Schema = mongoose.Schema;
 const PFS_Schema = new Schema({
 
     questions: [{
-        question:
-        {
+        question: {
             type: String,
         },
 
@@ -17,11 +16,11 @@ const PFS_Schema = new Schema({
             type: String,
         },
     }],
-    
+
     date: {
         type: Date,
         default: Date.now,
     },
 });
 
-mongoose.model("Networth", PFS_Schema);
+mongoose.model("PFS", PFS_Schema);

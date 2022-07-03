@@ -135,11 +135,11 @@ router.get('/allAsset', async (req, res) => {
             })
         else
             return res.status(400).json({
-                header: { message: "Assets not found", code: 1 },
+                header: { message: "Asset List not found", code: 1 },
             })
     } catch (error) {
         return res.status(400).json({
-            header: { message: "Assets not found", code: 1 },
+            header: { message: "Asset List not found", code: 1 },
             data: catList,
             error,
         })

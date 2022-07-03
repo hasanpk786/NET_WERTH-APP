@@ -21,11 +21,12 @@ app.use(cors());
 const UserRoutes = require("./UserRoutes.js");
 const asset = require("./asset.js");
 const liability = require("./liabilties.js");
-const PFS = 0;
+const pfs = require('./PFS_Routes.js')
 
 app.use("/UserRoutes", UserRoutes);
 app.use("/assetRoutes", asset);
 app.use("/liabilityRoutes", liability);
+app.use("/pfsRoutes", pfs);
 
 
 app.get("/", (req, res) => {
