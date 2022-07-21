@@ -1,30 +1,23 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
-  name: {
+const mediaModel = new Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "users",
+  },
+  link: {
     type: String,
     required: true,
   },
-
-  email: {
+  title: {
     type: String,
     required: true,
   },
-
-  password: {
-    type: String,
-    required: true,
-  },
-  role: {
-    type: String,
-    default: "user",
-  },
-
   date: {
     type: Date,
     default: Date.now,
   },
 });
 
-mongoose.model("users", UserSchema);
+mongoose.model("media", mediaModel);

@@ -2,30 +2,32 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const AssetSchema = new Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "users",
+  },
+  // car
+  categoryName: { type: String },
 
-    // car
-    categoryName: { type: String },
-
-    fields: [{
-
-        // car mantainence
-        fieldName: {
-            type: String,
-        },
-        value: {
-            type: Number,
-        }
-
-    }],
-
-    date: {
-        type: Date,
-        default: Date.now,
+  fields: [
+    {
+      // car mantainence
+      fieldName: {
+        type: String,
+      },
+      value: {
+        type: Number,
+      },
     },
+  ],
+
+  date: {
+    type: Date,
+    default: Date.now,
+  },
 });
 
 mongoose.model("Asset", AssetSchema);
-
 
 // category:
 
@@ -45,7 +47,6 @@ mongoose.model("Asset", AssetSchema);
 //         }],
 //     }
 // ],
-
 
 /* preious model json
 {
