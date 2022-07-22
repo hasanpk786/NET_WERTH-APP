@@ -1,18 +1,26 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const LiabilitySchema = new Schema({
-  categoryName: { type: String },
-
-  fields: [
+const LiabilitiesSchema = new Schema({
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "users",
+  },
+  liabilities: [
     {
-      // car mantainence
-      fieldName: {
-        type: String,
-      },
-      value: {
-        type: Number,
-      },
+      categoryName: { type: String },
+
+      fields: [
+        {
+          // car mantainence
+          fieldName: {
+            type: String,
+          },
+          value: {
+            type: String,
+          },
+        },
+      ],
     },
   ],
 
@@ -22,4 +30,4 @@ const LiabilitySchema = new Schema({
   },
 });
 
-mongoose.model("Liability", LiabilitySchema);
+mongoose.model("Liability", LiabilitiesSchema);

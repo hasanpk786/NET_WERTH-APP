@@ -6,18 +6,21 @@ const AssetSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "users",
   },
-  // car
-  categoryName: { type: String },
-
-  fields: [
+  assets: [
     {
-      // car mantainence
-      fieldName: {
-        type: String,
-      },
-      value: {
-        type: Number,
-      },
+      categoryName: { type: String },
+
+      fields: [
+        {
+          // car mantainence
+          fieldName: {
+            type: String,
+          },
+          value: {
+            type: String,
+          },
+        },
+      ],
     },
   ],
 
