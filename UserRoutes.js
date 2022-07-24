@@ -26,6 +26,7 @@ router.post("/addUser", async (req, res) => {
     name: req.body.name,
     email: req.body.email,
     role: req.body.role,
+
     // password: req.body.password,
     password: bcrypt.hashSync(req.body.password, 10),
   });
@@ -185,6 +186,7 @@ router.post("/login", async (req, res) => {
           token: jwt.sign({ id: user.id }, "process.env.JWT_Secret", {
             expiresIn: "24h",
           }),
+          goalNetWorth: user.goalNetWorth,
           role: user.role,
         },
       });

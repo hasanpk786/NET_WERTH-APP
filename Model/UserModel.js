@@ -8,6 +8,7 @@ const UserSchema = new Schema({
   },
   goalNetWorth: {
     type: String,
+    default: 0,
   },
   email: {
     type: String,
