@@ -204,6 +204,7 @@ router.put("/updateUser/:id", async (req, res) => {
     if (foundUser) {
       foundUser.name = req.body.name || foundUser.name;
       foundUser.role = req.body.role || foundUser.role;
+      foundUser.goalNetWorth = req.body.goalNetWorth || foundUser.goalNetWorth;
       // foundUser.password = req.body.password || foundUser.password;
       if (req.body.password) {
         foundUser.password = bcrypt.hashSync(req.body.password, 10);

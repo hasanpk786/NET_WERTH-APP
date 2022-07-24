@@ -6,7 +6,9 @@ const UserSchema = new Schema({
     type: String,
     required: true,
   },
-
+  goalNetWorth: {
+    type: String,
+  },
   email: {
     type: String,
     required: true,
