@@ -5,6 +5,7 @@ const { protect } = require("./Middleware/Auth.js");
 
 require("./Model/AssetModel");
 const Asset = mongoose.model("Asset");
+const User = mongoose.model("users");
 // code 0 means ok
 // code 1 means error
 
@@ -39,8 +40,14 @@ router.get(`/getAssetByUser/:userId`, async (req, res) => {
 });
 
 router.post("/addAsset", async (req, res) => {
-  const { user, assets } = req.body;
+  const { user, assets, total } = req.body;
   const foundAsset = await Asset.findOne({ user });
+  const foundUser = await User.findById({ _id: user });
+  const d = new Date();
+  if (foundUser) {
+    foundUser.assets[d.getMonth()] = total;
+    foundUser.save();
+  }
   if (foundAsset) {
     await Asset.deleteOne({ user });
     const newCategory = new Asset({

@@ -5,6 +5,7 @@ const { protect } = require("./Middleware/Auth.js");
 
 require("./Model/LiabilitiesModel");
 const Liability = mongoose.model("Liability");
+const User = mongoose.model("users");
 // code 0 means ok
 // code 1 means error
 
@@ -39,8 +40,14 @@ router.get(`/getLiabilityByUser/:userId`, async (req, res) => {
 });
 
 router.post("/addLiability", async (req, res) => {
-  const { user, liabilities } = req.body;
+  const { user, liabilities, total } = req.body;
   const foundLiability = await Liability.findOne({ user });
+  const foundUser = await User.findById({ _id: user });
+  const d = new Date();
+  if (foundUser) {
+    foundUser.liabilities[d.getMonth()] = total;
+    foundUser.save();
+  }
   if (foundLiability) {
     await Liability.deleteOne({ user });
     const newCategory = new Liability({

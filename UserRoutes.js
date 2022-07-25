@@ -187,6 +187,8 @@ router.post("/login", async (req, res) => {
             expiresIn: "24h",
           }),
           goalNetWorth: user.goalNetWorth,
+          assets: user.assets || [],
+          liabilities: user.liabilities || [],
           role: user.role,
         },
       });
