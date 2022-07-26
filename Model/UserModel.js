@@ -7,8 +7,11 @@ const UserSchema = new Schema({
     required: true,
   },
   goalNetWorth: {
-    type: String,
-    default: 0,
+    worth: {
+      type: String,
+      default: 0,
+    },
+    date: { type: Date },
   },
   email: {
     type: String,
