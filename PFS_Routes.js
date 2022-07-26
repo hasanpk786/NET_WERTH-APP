@@ -38,15 +38,16 @@ router.post("/addPfs", async (req, res) => {
           },
         });
       })
-      .catch((err) =>
+      .catch((err) => {
+        console.log(err);
         res.status(400).json({
           header: {
             message: "Question cannot be saved",
             err,
             code: 1,
           },
-        })
-      );
+        });
+      });
   } else {
     return res.status(400).json({
       header: {

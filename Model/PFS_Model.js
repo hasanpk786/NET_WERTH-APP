@@ -11,11 +11,6 @@ const PFS_Schema = new Schema({
       questionIndex: {
         type: Number,
       },
-
-      answerIndex: {
-        type: Number,
-      },
-
       expenses: [
         {
           name: { type: String },
