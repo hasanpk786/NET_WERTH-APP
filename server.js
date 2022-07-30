@@ -10,6 +10,7 @@ const asset = require("./asset.js");
 const liability = require("./liabilties.js");
 const pfs = require("./PFS_Routes.js");
 const mediaRoutes = require("./MediaRoutes");
+const PostRoutes = require("./PostRoutes");
 
 connectDB();
 const app = express();
@@ -22,6 +23,7 @@ app.use("/assetRoutes", asset);
 app.use("/liabilityRoutes", liability);
 app.use("/pfsRoutes", pfs);
 app.use("/mediaRoutes", mediaRoutes);
+app.use("/postRoutes", PostRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello World");
