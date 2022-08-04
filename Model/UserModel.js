@@ -28,11 +28,9 @@ const UserSchema = new Schema({
   },
   assets: {
     type: Array,
-    default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   liabilities: {
     type: Array,
-    default: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   },
   date: {
     type: Date,
