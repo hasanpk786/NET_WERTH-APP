@@ -69,7 +69,7 @@ router.post("/addLiability", async (req, res) => {
     "Dec",
   ];
   const d = new Date();
-  const monthNumber = d.getMonth();
+  const monthNumber = d.getMonth() - 1 < 0 ? 11 : d.getMonth() - 1;
   const year = d.getFullYear();
   const foundLiability = await Liability.findOne({ user });
   const foundUser = await User.findById({ _id: user });
@@ -78,13 +78,9 @@ router.post("/addLiability", async (req, res) => {
   if (foundUser) {
     console.log(foundUser.liabilities);
     if (!foundLiability) {
-      foundUser.liabilities[0] = {
-        month: `${months[monthNumber]} ${year}`,
-        total,
-      };
-      var m = monthNumber;
+      var m = monthNumber - 1;
       var y = year;
-      for (let i = 1; i < 12; i++) {
+      for (let i = 0; i < 12; i++) {
         m = m + 1;
         if (m === 12) {
           m = 0;
@@ -95,6 +91,10 @@ router.post("/addLiability", async (req, res) => {
           total: 0,
         };
       }
+      foundUser.liabilities[1] = {
+        month: `${months[monthNumber]} ${year}`,
+        total,
+      };
       await foundUser.save();
     } else {
       for (let i = 0; i < 12; i++) {

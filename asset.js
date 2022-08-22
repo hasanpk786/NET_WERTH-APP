@@ -42,6 +42,7 @@ router.get(`/getAssetByUser/:userId`, async (req, res) => {
 router.post("/addAsset", async (req, res) => {
   const { user, assets, total } = req.body;
   const foundAsset = await Asset.findOne({ user });
+  console.log(foundAsset);
   const foundUser = await User.findById({ _id: user });
   const months = [
     "Jan",
@@ -62,14 +63,10 @@ router.post("/addAsset", async (req, res) => {
   const year = d.getFullYear();
   if (foundUser) {
     if (!foundAsset) {
-      foundUser.assets[0] = {
-        month: `${months[monthNumber]} ${year}`,
-        total,
-      };
-      var m = monthNumber;
+      var m = monthNumber - 1;
       var y = year;
-      for (let i = 1; i < 12; i++) {
-        m = m + 1;
+
+      for (let i = 0; i < 12; i++) {
         if (m === 12) {
           m = 0;
           y = year + 1;
@@ -78,7 +75,12 @@ router.post("/addAsset", async (req, res) => {
           month: `${months[m]} ${y}`,
           total: 0,
         };
+        m = m + 1;
       }
+      foundUser.assets[1] = {
+        month: `${months[monthNumber]} ${year}`,
+        total,
+      };
       foundUser.save();
     } else {
       for (let i = 0; i < 12; i++) {
